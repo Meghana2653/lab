@@ -1,1 +1,63 @@
 python
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MaterialApp(
+  home: HomeScreen(),
+  title: 'Flutter Widgets Example',
+));
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Flutter Widgets Example')),
+      floatingActionButton: FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Welcome to Flutter!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 20),
+            const Text('This is an example of a simple Flutter app using various widgets.'),
+            const SizedBox(height: 20),
+            const Row(children: [
+              Icon(Icons.favorite, color: Colors.red),
+              SizedBox(width: 10),
+              Text('This is a row with an icon and text'),
+            ]),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(color: Colors.blueAccent, borderRadius: BorderRadius.all(Radius.circular(8))),
+              child: const Text('This is a container with padding, decoration, and rounded corners.',
+                  style: TextStyle(color: Colors.white)),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: const Text('Alert'),
+                  content: const Text('This is an alert dialog triggered by a button.'),
+                  actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close'))],
+                ),
+              ),
+              child: const Text('Show Alert Dialog'),
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                  'This text is centered and the space above is expanded to fill the available space.',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
